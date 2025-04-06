@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: aviaFly
+  datasource:
+    url: jdbc:postgresql://localhost:5432/project
+    username: postgres
+    password: 135790
+    driver-class-name: org.postgresql.Driver
+  jpa:
+      hibernate:
+        ddl-auto: none
+      show-sql: true
+      database: postgresql
+  liquibase:
+      change-log: db/changelog/master.yaml
+      user: postgres
+      password: 135790
+      liquibase-schema: airport
+
+server:
+  port: 8081

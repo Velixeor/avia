@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.21
+      author: postgres
+      changes:
+        - sql:
+            sql: |
+              CREATE TABLE airport.place_archive (
+                id INT NOT NULL,
+                flight_id INT NOT NULL,
+                name VARCHAR(50) NOT NULL,
+                user_id INT,
+                base_price DECIMAL(10,2) NOT NULL,
+                is_booked BOOLEAN NOT NULL DEFAULT false,
+                archived_at TIMESTAMP NOT NULL DEFAULT now(),
+                CONSTRAINT pk_place_archive PRIMARY KEY (id, flight_id)
+                );

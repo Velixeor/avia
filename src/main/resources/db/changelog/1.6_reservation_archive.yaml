@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.6
+      author: postgres
+      changes:
+        - sql:
+            sql: |
+              CREATE TABLE airport.reservation_archive (
+                  id INT NOT NULL,
+                  place_id INT NOT NULL,
+                  user_id INT NOT NULL,
+                  status VARCHAR(20) NOT NULL,
+                  expires_at TIMESTAMP NOT NULL,
+                  created_at TIMESTAMP NOT NULL,
+                  price DECIMAL(10,2) NOT NULL,
+                  archived_at TIMESTAMP DEFAULT NOW() NOT NULL
+              );

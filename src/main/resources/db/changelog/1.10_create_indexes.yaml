@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.10
+      author: postgres
+      changes:
+        - sql:
+            sql: |
+              CREATE INDEX idx_flight_date ON airport.flight (departure_date);
+              CREATE INDEX idx_place_flight_id ON airport.place (flight_id);
+              CREATE INDEX idx_reservation_expire ON airport.reservation (status, expires_at);
+              CREATE INDEX idx_archive_date ON airport.reservation_archive (archived_at);
