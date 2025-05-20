@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.aviafly.dto.PlaceDTO;
 import org.example.aviafly.entity.Flight;
 import org.example.aviafly.entity.Place;
+import org.example.aviafly.entity.Reservation;
 import org.example.aviafly.exception.BusinessException;
 import org.example.aviafly.exception.NotFoundException;
 import org.example.aviafly.repository.PlaceRepository;
@@ -24,15 +25,15 @@ public class PlaceService {
         return PlaceDTO.fromEntity(placeRepository.save(placeDTO.toEntity(flight, null)));
     }
     public Place getAvailablePlace(Integer placeId) {
-        Place place = findPlaceById(placeId);
+        Place place = getPlace(placeId);
         validatePlaceNotBooked(place);
         validateFlightNotDeparted(place);
         return place;
     }
 
-    private Place findPlaceById(Integer placeId) {
-        return placeRepository.findById(placeId)
-                .orElseThrow(() -> new NotFoundException(Place.class, placeId));
+    public Place getPlace(Integer placeId) {
+        return placeRepository.findAvailablePlaceForUpdate(placeId)
+                .orElseThrow(() -> new NotFoundException(Place.class,placeId));
     }
 
     private void validatePlaceNotBooked(Place place) {

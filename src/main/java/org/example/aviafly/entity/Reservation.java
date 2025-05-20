@@ -28,6 +28,10 @@ public class Reservation {
     @JoinColumn(name = "place_id", nullable = false)
     private Place place;
 
+    @Version
+    @Column(name = "version")
+    private Integer version;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

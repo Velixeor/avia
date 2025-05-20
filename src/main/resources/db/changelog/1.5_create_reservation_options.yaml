@@ -10,7 +10,7 @@ databaseChangeLog:
               option_id INT NOT NULL,
               CONSTRAINT pk_place_options PRIMARY KEY (reservation_id, option_id),
               CONSTRAINT fk_place_options_place FOREIGN KEY (reservation_id)
-              REFERENCES airport.reservation(id) ON DELETE CASCADE,
+              REFERENCES airport.reservation(id) ,
               CONSTRAINT fk_place_options_option FOREIGN KEY (option_id)
-                REFERENCES airport.option(id) ON DELETE CASCADE
+                REFERENCES airport.option(id) 
               );

@@ -13,6 +13,7 @@ databaseChangeLog:
                   expires_at TIMESTAMP NOT NULL,
                   price DECIMAL(10,2) NOT NULL,
                   created_at TIMESTAMP DEFAULT NOW() NOT NULL,
+                  version INT DEFAULT 0 NOT NULL,
                   CONSTRAINT fk_reservation_place FOREIGN KEY (place_id) REFERENCES airport.place(id) ON DELETE CASCADE,
                   CONSTRAINT fk_reservation_user FOREIGN KEY (user_id) REFERENCES airport.user(id) ON DELETE CASCADE,
                   CONSTRAINT check_status CHECK (status IN ('booked', 'paid', 'cancelled'))
